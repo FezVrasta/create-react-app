@@ -22,7 +22,9 @@ make sure to add the following line to your `.flowconfig` to make Flow aware of 
 
 ```diff
   [options]
-+ module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
++ module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
 ```
+
+> Be aware! OCaml regex don't support the negative lookahead operator (`?!`), so to make sure we don't map relative imports (starting with one or two dots), we assume all our files and folders will always start with either a letter or a number.
 
 To learn more about Flow, check out [its documentation](https://flow.org/).
